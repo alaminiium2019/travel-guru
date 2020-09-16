@@ -1,0 +1,16 @@
+
+.loginApp{
+    border: 2px solid rgb(133, 125, 141);
+    padding: 20px;
+}
+.googleSign{
+    width: 5%;
+    height: 10%;
+    padding: 10px;
+}
+.googleIn{
+    display: flex;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    align-items: center;
+}

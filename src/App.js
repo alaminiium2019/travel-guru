@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./Components/Header/Header";
+import News from "./Components/News/News";
+import Login from "./Components/Login/Login";
+import Book from "./Components/Book/Book";
+import CoxsBazar from "./Components/TravelPlace/CoxBazar/CoxsBazar";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import PrivateRoute from "./Components/PrivateRouter/PrivateRouter";
+
+export const UserContext = createContext();
 
 function App() {
+  const [loggedInUser,setLoggedInUser]=useState({});
+
+  const handleSignOut = () =>{
+    firebase.auth().signOut()
+    .then(res => {
+      const signedOut= {
+        displayName:'',
+        email:''
+      }
+      setLoggedInUser(signedOut);
+    }).catch(error => console.log(error));
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
+      
+      {/* <button onClick={handleSignOut}>Sign Out</button> */}
+      <Router>
+        <Header></Header>
+        <Switch>
+          <Route path="/news">
+            <News></News>
+          </Route>
+          <Route path="/login">
+            <Login></Login>
+          </Route>
+          <Route path="/book">
+            <Book></Book>
+          </Route>
+          <PrivateRoute path="/coxsBazar">
+            <CoxsBazar></CoxsBazar>  
+          </PrivateRoute>
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

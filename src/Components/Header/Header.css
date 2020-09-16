@@ -1,0 +1,24 @@
+.header{
+    display: flex;
+    justify-content:space-around;
+    padding: 10px 50px;
+    align-items: center;
+}
+.header img{
+    width: 15%;
+    height:15%;
+}
+.header a{
+    text-decoration: none;
+    color: red;
+}
+.header input{
+    width: 300px;
+    height: 40px;
+}
+.searchBox{
+    padding: 5px;
+}
+
+
+
