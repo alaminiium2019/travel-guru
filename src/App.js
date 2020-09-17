@@ -13,18 +13,28 @@ import PrivateRoute from "./Components/PrivateRouter/PrivateRouter";
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser,setLoggedInUser]=useState({});
+  const [loggedInUser,setLoggedInUser]=useState({
+    isSignedIn:false,
+    name:'',
+    email:'',
+    password:'',
+    photo:''
+  });
 
-  const handleSignOut = () =>{
-    firebase.auth().signOut()
-    .then(res => {
-      const signedOut= {
-        displayName:'',
-        email:''
-      }
-      setLoggedInUser(signedOut);
-    }).catch(error => console.log(error));
-  }
+//  const handleSignOut = () =>{
+//     firebase.auth().signOut()
+//     .then(res => {
+//       const signedOut= {
+//         isSignedIn:false,
+//         name:'',
+//         email:'',
+//         photo:'',
+//         error:'',
+//         success:false
+//       }
+//       setLoggedInUser(signedOut);
+//     }).catch(error => console.log(error));
+//   }
 
 
   return (
