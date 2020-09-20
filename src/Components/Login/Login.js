@@ -3,13 +3,13 @@ import "./Login.css";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import icon from "../../Images/Icon/google.png";
+import fbicon from "../../Images/Icon/fb.png";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "./firebase.config";
 import { UserContext } from "../../App";
 import { FormGroup } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+
 
 const Login = () => {
   if (firebase.apps.length === 0) {
@@ -118,68 +118,128 @@ const Login = () => {
       });
   };
 
+  const handleFbSignIn = () => {
+    var fbprovider = new firebase.auth.FacebookAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(fbprovider)
+      .then((result) => {
+        const { displayName, email } = result.user;
+        const signedInUser = { name: displayName, email };
+        setLoggedInUser(signedInUser);
+      })
+      .catch((error) => {
+        const newUserInfo = { ...loggedInUser };
+        newUserInfo.error = error.message;
+        newUserInfo.success = false;
+        setNewUser(newUserInfo);
+      });
+  };
+
   return (
-    <Container style={{ margin: "auto", width: "400px" }}>
-      <div className="loginApp">
-        <div>
-          <form onSubmit={handleSubmit}>
-            <h1>Login</h1>
+    <Container>
+      <br></br>
+      <div>
+        <div
+          style={{ margin: "auto", width: "500px", border: "1px solid black" }}
+        >
+          <form className="p-4" onSubmit={handleSubmit}>
+            {newUser ? <h3>Create an account</h3> : <h3>Login</h3>}
+            <br></br>
             {newUser && (
-              <input
-                type="text"
-                name="username"
-                onBlur={handleBlur}
-                placeholder="Your Name"
-              ></input>
+              <div>
+                <FormGroup>
+                  <TextField
+                    type="text"
+                    name="username"
+                    onBlur={handleBlur}
+                    placeholder="Your Name"
+                  ></TextField>
+                </FormGroup>
+                <br></br>
+                <FormGroup>
+                  <TextField
+                    type="text"
+                    placeholder="your first name"
+                  ></TextField>
+                  <br></br>
+                </FormGroup>
+              </div>
             )}
             <FormGroup>
-              <input
+              <TextField
                 type="text"
                 name="email"
                 onBlur={handleBlur}
-                placeholder="Email"
-              ></input>
+                placeholder="username or email"
+              ></TextField>
             </FormGroup>
+            <br></br>
             <FormGroup>
-              <input
+              <TextField
                 type="password"
                 name="password"
                 onBlur={handleBlur}
                 placeholder="Password"
-              ></input>
+              ></TextField>
             </FormGroup>
             <FormGroup>
-
-                <input
-                  type="submit"
-                  value={newUser ? "Sign up" : "Sign In"}
-                ></input>
+              {newUser && (
+                <TextField
+                  type="password"
+                  name="password"
+                  onBlur={handleBlur}
+                  label="Confirm Password"
+                ></TextField>
+              )}
             </FormGroup>
-
-            {/* <!--Don't touch--> */}
-            <p>
-              Don't have an account? <Link to="/signup">Create an account</Link>
-            </p>
-
             <br></br>
-
-            <button className="googleIn" onClick={handleGoogleSignIn}>
-              <img className="googleSign" src={icon} alt=""></img>continue with
-              Google
-            </button>
+            <FormGroup>
+              <TextField
+                style={{ backgroundColor: "#ffbb00" }}
+                type="submit"
+                value={newUser ? "Create an account" : "Sign In"}
+              ></TextField>
+            </FormGroup>
+            <div className="pt-2 text-center">
+              {newUser ? (
+                <p>
+                  Already have an account?
+                  <span onClick={() => setNewUser(!newUser)}> Login</span>
+                </p>
+              ) : (
+                <p>
+                  Don't have account?{" "}
+                  <span onClick={() => setNewUser(!newUser)}>
+                    Create an account
+                  </span>
+                </p>
+              )}
+            </div>
           </form>
-          <input
-            type="checkbox"
-            onChange={() => setNewUser(!newUser)}
-            name="newUser"
-          ></input>
-          <label for="newUser">New User Sign Up</label>
           <p>{loggedInUser.error}</p>
           {loggedInUser.success && (
             <p>User{newUser ? "Created" : "loggedIn"} successfully</p>
           )}
         </div>
+        <br></br>
+        <div style={{ margin: "auto", width: "380px" }}>
+          <h4>
+            <span>or</span>
+          </h4>
+
+          <button className="ggIn p-1" onClick={handleFbSignIn}>
+            <img className="ggSign" src={fbicon} alt="" />
+            continue with Facebook
+          </button>
+          <button className="fbIn mt-3 p-1" onClick={handleGoogleSignIn}>
+            <img className="fbSign" src={icon} alt="" />
+            continue with Google
+          </button>
+        </div>
       </div>
+      <br></br>
+      <br></br>
     </Container>
   );
 };

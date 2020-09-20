@@ -4,42 +4,26 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import News from "./Components/News/News";
 import Login from "./Components/Login/Login";
-import Book from "./Components/Book/Book";
-import CoxsBazar from "./Components/TravelPlace/CoxBazar/CoxsBazar";
-import * as firebase from "firebase/app";
 import "firebase/auth";
 import PrivateRoute from "./Components/PrivateRouter/PrivateRouter";
+import CoxsBazarBook from "./Components/CoxsBazarBook/CoxsBazarBook";
+import CoxsBazarHotel from "./Components/CoxsBazar/CoxsBazarHotel";
+import SundorBanBook from "./Components/SundorBanBook/SundorBanBook";
+import SreemangalBook from "./Components/SreeMangal/SreemangalBook";
 
 export const UserContext = createContext();
 
 function App() {
-  const [loggedInUser,setLoggedInUser]=useState({
-    isSignedIn:false,
-    name:'',
-    email:'',
-    password:'',
-    photo:''
+  const [loggedInUser, setLoggedInUser] = useState({
+    isSignedIn: false,
+    name: "",
+    email: "",
+    password: "",
+    photo: "",
   });
 
-//  const handleSignOut = () =>{
-//     firebase.auth().signOut()
-//     .then(res => {
-//       const signedOut= {
-//         isSignedIn:false,
-//         name:'',
-//         email:'',
-//         photo:'',
-//         error:'',
-//         success:false
-//       }
-//       setLoggedInUser(signedOut);
-//     }).catch(error => console.log(error));
-//   }
-
-
   return (
-    <UserContext.Provider value={[loggedInUser,setLoggedInUser]}>
-      
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       {/* <button onClick={handleSignOut}>Sign Out</button> */}
       <Router>
         <Header></Header>
@@ -50,12 +34,18 @@ function App() {
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route path="/book">
-            <Book></Book>
+          <Route path="/coxsbazarBook">
+            <CoxsBazarBook></CoxsBazarBook>
           </Route>
-          <PrivateRoute path="/coxsBazar">
-            <CoxsBazar></CoxsBazar>  
+          <PrivateRoute path="/coxsBazarHotel">
+            <CoxsBazarHotel></CoxsBazarHotel>
           </PrivateRoute>
+          <Route path="/sundarbanBook">
+            <SundorBanBook></SundorBanBook>
+          </Route>
+          <Route path="/sreemangolBook">
+            <SreemangalBook></SreemangalBook>
+          </Route>
         </Switch>
       </Router>
     </UserContext.Provider>

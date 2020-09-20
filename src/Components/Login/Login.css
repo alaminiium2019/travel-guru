@@ -1,16 +1,36 @@
-
-.loginApp{
-    border: 2px solid rgb(133, 125, 141);
-    padding: 20px;
+.button{
+    background-color: #ffbb00;
 }
-.googleSign{
-    width: 5%;
-    height: 10%;
-    padding: 10px;
+.ggIn {
+    border-radius: 10px;
+    border:1px solid rgb(184, 177, 177); 
+    text-align: left; 
 }
-.googleIn{
-    display: flex;
-    border-radius: 20px;
-    margin-bottom: 5px;
-    align-items: center;
+.fbIn{
+    border-radius: 10px;
+    border:1px solid rgb(184, 177, 177);  
+    text-align: left; 
+}
+.ggSign{
+    width:15%;
+    height:8%;
+    padding-right: 30px;
+    padding-left: 5px;
+}
+.fbSign{
+    width:15%;
+    height:8%;
+    padding-right: 30px;
+    padding-left: 5px;
+}
+h4 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+h4 span {
+    background: #fff;
+    padding: 0 10px;
 }
