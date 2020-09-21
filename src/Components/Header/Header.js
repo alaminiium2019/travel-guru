@@ -29,27 +29,27 @@ const Header = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   return (
-    // <div style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${header})` }} className="header">
+    <div className="header">
+      <img src={Logo} alt="" />
+      <input
+        className="searchBox"
+        type="search"
+        placeholder="Search your Destination"
+      ></input>
+      <Link to="/news">News</Link>
+      <Link to="/destination">Destination</Link>
+      <Link to="/blog">Blog</Link>
+      <Link to="/contact">Contact</Link>
 
-    <Container>
-      <div className="header">
-        <img src={Logo} alt="" />
-        <input
-          className="searchBox"
-          type="search"
-          placeholder="Search your Destination"
-        ></input>
-        <Link to="/news">News</Link>
-        <Link to="/destination">Destination</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/contact">Contact</Link>
-
-        {loggedInUser.name}
-        {!loggedInUser.name ? <button><Link to="/login">Login</Link></button>:
+      {loggedInUser.name}
+      {!loggedInUser.name ? (
+        <button>
+          <Link to="/login">Login</Link>
+        </button>
+      ) : (
         <button onClick={handleSignOut}>Sign out</button>
-        }
-      </div>
-    </Container>
+      )}
+    </div>
   );
 };
 

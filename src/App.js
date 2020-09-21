@@ -10,6 +10,7 @@ import CoxsBazarBook from "./Components/CoxsBazarBook/CoxsBazarBook";
 import CoxsBazarHotel from "./Components/CoxsBazar/CoxsBazarHotel";
 import SundorBanBook from "./Components/SundorBanBook/SundorBanBook";
 import SreemangalBook from "./Components/SreeMangal/SreemangalBook";
+import Gmap from "./Components/Map/Gmap";
 
 export const UserContext = createContext();
 

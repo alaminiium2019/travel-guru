@@ -1,0 +1,7 @@
+.bgcolor{
+    background: url("../../Images/Image/Rectangle-1.png") rgba(177, 157, 157, 0.9);
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-height: 600px;
+    color:oldlace;
+}

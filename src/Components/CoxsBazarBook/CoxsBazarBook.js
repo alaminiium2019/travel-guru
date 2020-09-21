@@ -2,11 +2,13 @@ import { Container, TextField } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import BookingForm from "../BookingForm/BookingForm";
+import './CoxsBazarBook.css';
 
 const CoxsBazarBook = () => {
   return (
-      <Container>
-    <div className="bookingForm d-flex m-3">
+      <div className="bgcolor">
+      <Container className="p-4">
+    <div className="bookingForm d-flex mt-3">
       <div className="row">
         <div className="col-md-8">
           <p>
@@ -17,13 +19,14 @@ const CoxsBazarBook = () => {
             tourThis will be about tour
           </p>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4 p-4" style={{border:'2px solid red',borderRadius:'5px'}}>
           <BookingForm></BookingForm>
-          <button className="btn btn-block"><Link to="/coxsBazarHotel">Start Booking</Link></button>
+          <button style={{backgroundColor:'#ffbb00'}} className="btn btn-block mt-3"><Link to="/coxsBazarHotel">Start Booking</Link></button>
         </div>
       </div>
     </div>
     </Container>
+    </div>
   );
 };
 
