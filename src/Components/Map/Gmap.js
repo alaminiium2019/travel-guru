@@ -5,6 +5,7 @@ import leafGreen from '../../Images/map-image/green-marker.png';
 import leafRed from '../../Images/map-image/red-marker.png';
 import leafOrange from '../../Images/map-image/yellow-marker.png';
 import leafShadow from '../../Images/map-image/shadow.png';
+import './Gmap.css';
 
 
 
@@ -12,29 +13,29 @@ class Gmap extends Component {
   
   state = {
     greenIcon: {
-      lat: 35.787449,
-      lng: -78.6438197,
+      lat: 23.382,
+      lng: 92.2938,
     },
     redIcon: {
-      lat: 35.774416,
-      lng: -78.633271,
+      lat: 24.3065,
+      lng: 91.7296,
     },
     orangeIcon: {
-      lat: 35.772790,
-      lng: -78.652305,
+      lat: 21.9497,
+      lng: 89.1833,
     },
-    zoom: 13
+    zoom: 11
   }
 
 
   grenIcon = L.icon({
     iconUrl: leafGreen,
     shadowUrl: leafShadow,
-    iconSize:     [38, 95], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76]
+    iconSize:     [40, 40], // size of the icon
+    shadowSize:   [40, 40], // size of the shadow
+    iconAnchor:   [22, 30], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 30],  // the same for the shadow
+    
   });
 
   redIcon = L.icon({
@@ -44,7 +45,7 @@ class Gmap extends Component {
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -86]
+   
   });
 
   orangeIcon = L.icon({
@@ -54,7 +55,7 @@ class Gmap extends Component {
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -86]
+    
   });
 
   render(){
@@ -62,27 +63,29 @@ class Gmap extends Component {
     const positionGreenIcon = [this.state.greenIcon.lat, this.state.greenIcon.lng];
     const positionOrangeIcon = [this.state.orangeIcon.lat, this.state.orangeIcon.lng];
     return (
+      <div className="map">
       <Map className="map" center={positionGreenIcon} zoom={this.state.zoom}>
         <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={positionGreenIcon} icon={this.grenIcon}>
           <Popup>
-          I am a green leaf
+          
           </Popup>
         </Marker>
         <Marker position={positionRedIcon} icon={this.redIcon}>
           <Popup>
-          I am a red leaf
+          
           </Popup>
         </Marker>
         <Marker position={positionOrangeIcon} icon={this.orangeIcon}>
           <Popup>
-          I am an orange leaf
+          
           </Popup>
         </Marker>
       </Map>
+      </div>
     );
   }
 }
